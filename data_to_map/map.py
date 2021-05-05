@@ -326,11 +326,11 @@ def points(plot, div, point_source):
                 }
                 var protest = indices[i];
                 var desc = features['Description of Protest'][protest];
-                var uni = features['School Name'][protest];
+                var uni = features['School Name'][protest].toUpperCase();
                 var type = features['Event Type (F3)'][protest];
                 div.text = div.text + '<section style="background-color:white; margin:10px; padding:5px">'
-                + counter + '.' + '<br>' + desc + '<br>' + ' Location: ' + '<i class="fas fa-globe-africa">'+'</i>'+
-                           uni + '<br>' + ' Type of Protest: ' + type +
+                 + desc + '<br>' + '<div style="background-color:#D9F8FA; padding:3px; display:inline-block; border-radius:4px">' +'<i class="fa fa-globe-africa" style="padding:3px">'+'</i>'+
+                          " " + uni + '</div>'+'<br>' + '<div style="background-color:#F7D9FA; padding:3px; display:inline-block; border-radius:4px">' + type +'</div>' +
                            '<br>' + '</section>';
                 }
         }
