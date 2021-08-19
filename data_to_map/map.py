@@ -400,6 +400,61 @@ if (properties != undefined) {
 
     return plot
 
+def results(div, point_source, button):
+
+    return_results = customJS(
+        args=dict(div=div, point_source=point_source, button=button),
+            code=""" 
+                var features = point_source['data'];
+
+                for (let i = 0; i < features.length; i++) {
+                var protest = indices[i];
+                var desc = features['Description of Protest'][protest];
+                var uni = features['School Name'][protest]
+                    .toString()
+                    .toUpperCase();
+                var type = features['Event Type (F3)'][protest];
+                var date = features['Date'][protest];
+                var locationName = features['Locality Name'][protest];
+
+                // `baseurlPrefix` will need to match whatever
+                // baseurl Jekyll's _config.yml file specifies...
+                // pretty awkward, but I see no obvious alternative.
+                var baseurlPrefix = '/spa/'
+
+                var protestName = baseurlPrefix + features['perma'][protest];
+
+                // In the following I tried to make the underlying HTML
+                // structure a little more visible. It's not perfect,
+                // but I hope it helps a bit.
+
+                div.text +=
+'<a href="' + protestName + '">' +
+  '<section style="background-color:white; margin:10px; padding-left:5px">' +
+    '<p style="padding:3px; display:inline-block; color:gray; font-size:15px">' +
+      '<i class="fa fa-globe-africa" style="padding:3px">' +
+      '</i>' + " " +
+      uni +
+    '</p>' +
+    '<div style="font-weight: bold; padding:3px; display:inline-block; border-radius:4px">' +
+      date +
+    '</div>' + '<br>' +
+    '<div style="padding-left:5px; padding-right:5px">' +
+      desc +
+    '</div>' +
+    '<div style="background-color:#F7D9FA; padding:3px; display:inline-block; border-radius:4px">' +
+      type +
+    '</div>' +
+    '<div style="background-color:#ccffff; padding:3px; display:inline-block; border-radius:4px">' +
+      locationName +
+    '</div>' + '<br>' +
+  '</section>' +
+'</a>'
+
+            """)
+
+    button.js_on_event(events.ButtonClick, return_results)
+
 
 def points(plot, div, point_source):
     point = Scatter(
@@ -509,7 +564,6 @@ def toggle(filter_col, filter):
     select_toggle.js_link('active', filter, 'visible')
 
     return select_toggle
-
 
 def filter_name_camel(filter_name):
     name = filter_name_clean(filter_name)
@@ -665,6 +719,17 @@ class Map:
                        "<h3 style='color:gray'>" + "Use filters to the left to display protests based on category. Hover over protests on map for more information." +
                         "</h3>" + "<br>")
 
+        mobile_div = Div(width=plot.plot_width // 2,
+                  height=plot.plot_height,
+                  height_policy="fixed",
+                  text="<div style='background-color:lightgray; height:400px; padding:10px; overflow: scroll'>" +
+                       "<h3 style='color:gray'>" + "Use filters to the left to display protests based on category. Hover over protests on map for more information." +
+                        "</h3>" + "<br>")
+
+        search_button = Button(label="Filter protests",
+                button_type="success",
+                visible=True)
+
         # Create two copies of the protest data. One will be the data to be
         # displayed, and will be mutable. The other will be an unchanging
         # collection of all the data. Upon a filter change, the data to
@@ -672,20 +737,73 @@ class Map:
         protests_json = self.protests.to_json()
         full_source = GeoJSONDataSource(geojson=protests_json)
         point_source = GeoJSONDataSource(geojson=protests_json)
+
         points(plot, div, point_source)
 
+        search_button.js_on_event(events.ButtonClick, customJS(
+            args=dict(div=mobile_div, point_source=point_source, button=search_button),
+                code=""" 
+                    var features = point_source['data'];
+
+                    for (let i = 0; i < features.length; i++) {
+                    var protest = indices[i];
+                    var desc = features['Description of Protest'][protest];
+                    var uni = features['School Name'][protest]
+                        .toString()
+                        .toUpperCase();
+                    var type = features['Event Type (F3)'][protest];
+                    var date = features['Date'][protest];
+                    var locationName = features['Locality Name'][protest];
+
+                    // `baseurlPrefix` will need to match whatever
+                    // baseurl Jekyll's _config.yml file specifies...
+                    // pretty awkward, but I see no obvious alternative.
+                    var baseurlPrefix = '/spa/'
+
+                    var protestName = baseurlPrefix + features['perma'][protest];
+
+                    // In the following I tried to make the underlying HTML
+                    // structure a little more visible. It's not perfect,
+                    // but I hope it helps a bit.
+
+                    div.text +=
+    '<a href="' + protestName + '">' +
+      '<section style="background-color:white; margin:10px; padding-left:5px">' +
+        '<p style="padding:3px; display:inline-block; color:gray; font-size:15px">' +
+          '<i class="fa fa-globe-africa" style="padding:3px">' +
+          '</i>' + " " +
+          uni +
+        '</p>' +
+        '<div style="font-weight: bold; padding:3px; display:inline-block; border-radius:4px">' +
+          date +
+        '</div>' + '<br>' +
+        '<div style="padding-left:5px; padding-right:5px">' +
+          desc +
+        '</div>' +
+        '<div style="background-color:#F7D9FA; padding:3px; display:inline-block; border-radius:4px">' +
+          type +
+        '</div>' +
+        '<div style="background-color:#ccffff; padding:3px; display:inline-block; border-radius:4px">' +
+          locationName +
+        '</div>' + '<br>' +
+      '</section>' +
+    '</a>'
+
+                """))
+
+
         hash_callback = CustomJS(
-            name="callback-load-hash-coordinates-protests",
-            args=dict(x=plot.x_range, y=plot.y_range),
-            code="""
-                console.log([x.start, x.end, y.start, y.end].join(','))
-                let data = window.location.hash.slice(1)
-                                 .split(',').map(x => +x);
-                if (data.length == 4 && data.every(x => !isNaN(x))) {
-                    [x.start, x.end, y.start, y.end] = data;
-                }
-            """
-        )
+                name="callback-load-hash-coordinates-protests",
+                args=dict(x=plot.x_range, y=plot.y_range),
+                code="""
+                    console.log([x.start, x.end, y.start, y.end].join(','))
+                    let data = window.location.hash.slice(1)
+                                     .split(',').map(x => +x);
+                    if (data.length == 4 && data.every(x => !isNaN(x))) {
+                        [x.start, x.end, y.start, y.end] = data;
+                    }
+                """
+            )
         hidden_button = Button(label="Reset Zoom",
                                button_type="success",
                                visible=False)
@@ -791,7 +909,8 @@ class Map:
         duo_col = column(*duo_stack)
         duo_col.css_classes = ["spa-filters-column"]
 
-        map_select = row(duo_col, plot, div)
+        results_col = column(search_button,mobile_div)
+        map_select = row(duo_col, plot, div, results_col)
         layout = column(hidden_button, map_select)
         return layout
 

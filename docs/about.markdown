@@ -30,7 +30,7 @@ permalink: /about/
 <br>
 <h2 style="text-align:center; color:gray">{{ "Project Team" | upcase }}</h2>
 <div class="team">
-	<div class="person" style="display:flex; flex-wrap:wrap">
+	<div class="person" style="display:flex; flex-wrap:wrap; justify-content:center">
 		<span class="left" style="flex-basis:20em">
 			<img class="portrait" alt="Krystal Strong" src="{{site.baseurl}}/assets/img/team-images/krystal_strong.png" style="width:300px">
 		</span>
@@ -45,7 +45,7 @@ permalink: /about/
 		</span>
 	</div>
 	<br>
-	<div class="person" style="display:flex; flex-wrap:wrap">
+	<div class="person" style="display:flex; flex-wrap:wrap; justify-content:center">
 		<span class="left" style="flex-basis:20em">
 			<img class="portrait" alt="Krystal Strong" src="{{site.baseurl}}/assets/img/team-images/jimil_ataman.jpg" style="width:300px">
 		</span>
