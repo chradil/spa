@@ -400,62 +400,6 @@ if (properties != undefined) {
 
     return plot
 
-def results(div, point_source, button):
-
-    return_results = customJS(
-        args=dict(div=div, point_source=point_source, button=button),
-            code=""" 
-                var features = point_source['data'];
-
-                for (let i = 0; i < features.length; i++) {
-                var protest = indices[i];
-                var desc = features['Description of Protest'][protest];
-                var uni = features['School Name'][protest]
-                    .toString()
-                    .toUpperCase();
-                var type = features['Event Type (F3)'][protest];
-                var date = features['Date'][protest];
-                var locationName = features['Locality Name'][protest];
-
-                // `baseurlPrefix` will need to match whatever
-                // baseurl Jekyll's _config.yml file specifies...
-                // pretty awkward, but I see no obvious alternative.
-                var baseurlPrefix = '/spa/'
-
-                var protestName = baseurlPrefix + features['perma'][protest];
-
-                // In the following I tried to make the underlying HTML
-                // structure a little more visible. It's not perfect,
-                // but I hope it helps a bit.
-
-                div.text +=
-'<a href="' + protestName + '">' +
-  '<section style="background-color:white; margin:10px; padding-left:5px">' +
-    '<p style="padding:3px; display:inline-block; color:gray; font-size:15px">' +
-      '<i class="fa fa-globe-africa" style="padding:3px">' +
-      '</i>' + " " +
-      uni +
-    '</p>' +
-    '<div style="font-weight: bold; padding:3px; display:inline-block; border-radius:4px">' +
-      date +
-    '</div>' + '<br>' +
-    '<div style="padding-left:5px; padding-right:5px">' +
-      desc +
-    '</div>' +
-    '<div style="background-color:#F7D9FA; padding:3px; display:inline-block; border-radius:4px">' +
-      type +
-    '</div>' +
-    '<div style="background-color:#ccffff; padding:3px; display:inline-block; border-radius:4px">' +
-      locationName +
-    '</div>' + '<br>' +
-  '</section>' +
-'</a>'
-
-            """)
-
-    button.js_on_event(events.ButtonClick, return_results)
-
-
 def points(plot, div, point_source):
     point = Scatter(
         marker="circle",
@@ -740,27 +684,27 @@ class Map:
 
         points(plot, div, point_source)
 
-        search_button.js_on_event(events.ButtonClick, customJS(
+        search_button.js_on_event(events.ButtonClick, CustomJS(
             args=dict(div=mobile_div, point_source=point_source, button=search_button),
                 code=""" 
                     var features = point_source['data'];
 
-                    for (let i = 0; i < features.length; i++) {
-                    var protest = indices[i];
-                    var desc = features['Description of Protest'][protest];
-                    var uni = features['School Name'][protest]
+                    console.log(features['School Name'].length);
+                    for (let i = 0; i < features['School Name'].length; i++) {
+                    var desc = features['Description of Protest'][i];
+                    var uni = features['School Name'][i]
                         .toString()
                         .toUpperCase();
-                    var type = features['Event Type (F3)'][protest];
-                    var date = features['Date'][protest];
-                    var locationName = features['Locality Name'][protest];
+                    var type = features['Event Type (F3)'][i];
+                    var date = features['Date'][i];
+                    var locationName = features['Locality Name'][i];
 
                     // `baseurlPrefix` will need to match whatever
                     // baseurl Jekyll's _config.yml file specifies...
                     // pretty awkward, but I see no obvious alternative.
                     var baseurlPrefix = '/spa/'
 
-                    var protestName = baseurlPrefix + features['perma'][protest];
+                    var protestName = baseurlPrefix + features['perma'][i];
 
                     // In the following I tried to make the underlying HTML
                     // structure a little more visible. It's not perfect,
@@ -787,7 +731,9 @@ class Map:
           locationName +
         '</div>' + '<br>' +
       '</section>' +
-    '</a>'
+    '</a>'+ '<br>';
+            }
+        
 
                 """))
 
