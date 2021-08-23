@@ -667,7 +667,7 @@ class Map:
                   height=plot.plot_height,
                   height_policy="fixed",
                   text="<div style='background-color:lightgray; height:400px; padding:10px; overflow: scroll'>" +
-                       "<h3 style='color:gray'>" + "Use filters to the left to display protests based on category. Hover over protests on map for more information." +
+                       "<h3 style='color:gray'>" + "Use filters to display protests based on category." +
                         "</h3>" + "<br>")
 
         search_button = Button(label="Filter protests",
@@ -687,10 +687,21 @@ class Map:
         search_button.js_on_event(events.ButtonClick, CustomJS(
             args=dict(div=mobile_div, point_source=point_source, button=search_button),
                 code=""" 
-                    var features = point_source['data'];
+
+                    div.text = "<div style='background-color:lightgray; height:400px; padding:10px; overflow: scroll'>" +
+                       "<h3 style='color:gray'>" +
+                        "</h3>" + "<br>";
+                    let features = point_source['data'];
+                    let length;
 
                     console.log(features['School Name'].length);
-                    for (let i = 0; i < features['School Name'].length; i++) {
+                    if(features['School Name'].length > 10 | features['School Name'].length == 10){
+                        length = 10;
+                    }else if(features['School Name'].length < 10){
+                        length = features['School Name'].length
+                    }
+
+                    for (let i = 0; i < length; i++) {
                     var desc = features['Description of Protest'][i];
                     var uni = features['School Name'][i]
                         .toString()
@@ -732,8 +743,11 @@ class Map:
         '</div>' + '<br>' +
       '</section>' +
     '</a>'+ '<br>';
+
             }
-        
+            if (features['School Name'].length > 10){
+                div.text += "Additional protests for this search may not be shown; please see the desktop version of the site for full results";
+                }        
 
                 """))
 
