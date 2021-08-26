@@ -232,9 +232,9 @@ footer > article {
 
 }
 
-.country-list{
-  display:none;
-  visibility:hidden;
+.country-list, .mobile-results, .mobile-button{
+  display:none !important;
+  visibility:hidden !important;
 }
 
 @media screen and (max-width: 1200px) {
@@ -313,6 +313,21 @@ footer > article {
 
   }
 
+  .desktop-results{
+    display:none;
+    visibility: hidden;
+  }
+
+  .mobile-button, .mobile-results{
+    display:block !important;
+    visibility: visible !important; 
+    width:90vw !important;
+  }
+
+  .mobile-button > .bk > .bk {
+    font-size: 1.2rem !important
+
+  }
 
 }
 

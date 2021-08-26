@@ -659,6 +659,7 @@ class Map:
         div = Div(width=plot.plot_width // 2,
                   height=plot.plot_height,
                   height_policy="fixed",
+                  css_classes = ["desktop-results"],
                   text="<div style='background-color:lightgray; height:650px; padding:10px; overflow: scroll'>" +
                        "<h3 style='color:gray'>" + "Use filters to the left to display protests based on category. Hover over protests on map for more information." +
                         "</h3>" + "<br>")
@@ -666,13 +667,16 @@ class Map:
         mobile_div = Div(width=plot.plot_width // 2,
                   height=plot.plot_height,
                   height_policy="fixed",
+                  css_classes = ["mobile-results"],
                   text="<div style='background-color:lightgray; height:400px; padding:10px; overflow: scroll'>" +
                        "<h3 style='color:gray'>" + "Use filters to display protests based on category." +
                         "</h3>" + "<br>")
 
+
         search_button = Button(label="Filter protests",
-                button_type="success",
-                visible=True)
+                                button_type="success",
+                                visible=True,
+                                css_classes = ["mobile-button"])
 
         # Create two copies of the protest data. One will be the data to be
         # displayed, and will be mutable. The other will be an unchanging
