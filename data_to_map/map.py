@@ -870,8 +870,8 @@ class Map:
         duo_col.css_classes = ["spa-filters-column"]
 
         results_col = column(search_button,mobile_div)
-        map_select = row(duo_col, plot, div, results_col)
-        layout = column(hidden_button, map_select)
+        map_select = row(duo_col, plot, div)
+        layout = column(hidden_button, map_select, results_col)
         return layout
 
     def individual_point_plots(
