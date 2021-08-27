@@ -9,4 +9,5 @@ permalink: /protest-map/
 
 {% include bokeh_heading.html %}
 <img class="heatmap-static" src="{{site.baseurl}}/assets/img/points-static.png">
+<p style="font-size:18px; font-weight:bold; color:gray; text-align:center">Use the categories below to filter the list of protests.</p>
 {% include protest-map.html %}

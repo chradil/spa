@@ -669,7 +669,7 @@ class Map:
                   height_policy="fixed",
                   css_classes = ["mobile-results"],
                   text="<div style='background-color:lightgray; height:400px; padding:10px; overflow: scroll'>" +
-                       "<h3 style='color:gray'>" + "Use filters to display protests based on category." +
+                       "<h3 style='color:lightgray'>" + "Use filters to display protests based on category." +
                         "</h3>" + "<br>")
 
 
