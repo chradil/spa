@@ -10,7 +10,7 @@ layout: home
 <div class="hidden-on-desktop country-list"> 
 
 {% for nation in site.data.countries %}
-<a href="{{site.baseurl}}/countries/{{nation.country}}" target="_blank">{{nation.country}}</a><br>
+<a href="{{site.baseurl}}/countries/{{nation.country}}" target="_blank">{{nation.country}}</a>
 
 {% endfor %}
 
