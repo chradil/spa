@@ -8,6 +8,14 @@ a.spa-protest-result, a.spa-protest-result:visited, a.spa-protest-result:hover, 
 
 }
 
+article.spa-protest-result, a.spa-protest-result > section {
+  border:2px solid white;
+}
+
+article.spa-protest-result:hover, a.spa-protest-result > section:hover {
+  border:2px solid #edb19f;
+}
+
 a.site-title, a.site-title:visited{
   font-weight:bold;
   color:darkred;

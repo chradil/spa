@@ -449,7 +449,7 @@ def points(plot, div, point_source):
                 // but I hope it helps a bit.
 
                 div.text +=
-'<a href="' + protestName + '">' +
+'<a class="spa-protest-result" href="' + protestName + '">' +
   '<section style="background-color:white; margin:10px; padding-left:5px">' +
     '<p style="padding:3px; display:inline-block; color:gray; font-size:15px">' +
       '<i class="fa fa-globe-africa" style="padding:3px">' +
