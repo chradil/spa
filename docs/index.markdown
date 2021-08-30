@@ -10,7 +10,7 @@ layout: home
 <div class="hidden-on-desktop country-list"> 
 <p style="font-size:18px; font-weight:bold;color:gray; text-align:center">Click on one of the nations listed below to learn more about it.</p>
 {% for nation in site.data.countries %}
-<a href="{{site.baseurl}}/countries/{{nation.country}}" target="_blank">{{nation.country}}</a>
+<a href="{{site.baseurl}}/countries/{{nation.country|downcase}}" target="_blank">{{nation.country}}</a>
 
 {% endfor %}
 
