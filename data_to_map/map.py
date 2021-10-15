@@ -918,7 +918,7 @@ class Map:
 
     def protest_pages(self, path):
         for i, row_ix in enumerate(self.protests.index.values):
-            if i > 5000:
+            if i > 7000:
                 break
             row = self.protests.loc[row_ix]
 
