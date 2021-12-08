@@ -12,6 +12,7 @@ services:
             - "4000:4000"
         depends_on:
             - data_to_map
+        restart: "always"
     data_to_map:
         build:
             context: .
@@ -21,3 +22,4 @@ services:
             - ./data_to_map:/srv/data_to_map
             - ./docs:/srv/docs
         command: python -u data_to_map/map.py
+        restart: "always"

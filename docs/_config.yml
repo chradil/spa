@@ -22,7 +22,6 @@ title: School Protests in Africa
 email: schoolprotestsinafrica@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   A project showing patterns of school protest in Africa.
-baseurl: /spa # the subpath of your site, e.g. /blog
 
 url: https://chradil.github.io # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
