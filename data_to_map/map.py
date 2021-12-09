@@ -419,8 +419,15 @@ def points(plot, div, point_source):
 
     hover_callback = CustomJS(args=dict(source=point_source, div=div),
                               code="""
+
+        // `features` contains *all* the points that have been identified
+        // by the filters on the left side of the map.
         var features = source['data'];
+
+        // `indices` contains the indices of those points currently
+        // being hovered over on the map.
         var indices = cb_data.index.indices;
+
         if (indices.length != 0) {
             div.text = "<div style='background-color:lightgray; " +
                        "height:650px; padding:10px; overflow: scroll'>" +
@@ -448,31 +455,18 @@ def points(plot, div, point_source):
                 // structure a little more visible. It's not perfect,
                 // but I hope it helps a bit.
 
-                div.text +=
-'<a class="spa-protest-result" href="' + protestName + '">' +
-  '<section style="background-color:white; margin:10px; padding-left:5px">' +
-    '<p style="padding:3px; display:inline-block; color:gray; font-size:15px">' +
-      '<i class="fa fa-globe-africa" style="padding:3px">' +
-      '</i>' + " " +
-      uni +
-    '</p>' +
-    '<div style="font-weight: bold; padding:3px; display:inline-block; border-radius:4px">' +
-      date +
-    '</div>' + '<br>' +
-    '<div style="padding-left:5px; padding-right:5px">' +
-      desc +
-    '</div>' +
-    '<div style="background-color:#F7D9FA; padding:3px; display:inline-block; border-radius:4px">' +
-      type +
-    '</div>' +
-    '<div style="background-color:#ccffff; padding:3px; display:inline-block; border-radius:4px">' +
-      locationName +
-    '</div>' + '<br>' +
-  '</section>' +
-'</a>' + '<br>';
-            }
-        }
-    """)
+
+                var location = features['Protest Location (F2)'][protest];
+
+                div.text += '<a class ="spa-protest-result" target="_blank" href="' + protestName +'">'+'<section class="spa-category-button" style="background-color:white;argin:10px; padding-left:5px">'
+                + '<p style="padding:3px; display:inline-block; color:gray; font-size:15px">' +'<i class="fa fa-globe-africa" style="padding:3px">'+'</i>'+
+                        " " + uni + '</p>' + '<div style="font-weight: bold; padding:3px; display:inline-block; border-radius:4px">' + date +'</div>' + '<br  >'
+                + '<div style="padding-left:5px; padding-right:5px">' + desc + '</div>' + '<div style="background-color:#F7D9FA; padding:3px; display:inline-  block; border-radius:4px">' + type +'</div>'
+                + '<div style="background-color:#ccffff; padding:3px; display:inline-block; border-radius:4px">' + location +'</div>'
+                         + '<br>' + '</section>' + '</a>' + '<br>';
+                }
+          }  """)
+
 
     hover = HoverTool(
         tooltips=None,
@@ -686,6 +680,11 @@ class Map:
         full_source = GeoJSONDataSource(geojson=protests_json)
         point_source = GeoJSONDataSource(geojson=protests_json)
 
+<<<<<<< HEAD
+=======
+        # Here, point_source, which contains just the selected points,
+        # gets "attached" to the map and the hover div.
+>>>>>>> scott-spa
         points(plot, div, point_source)
 
         search_button.js_on_event(events.ButtonClick, CustomJS(
