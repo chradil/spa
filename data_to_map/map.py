@@ -680,11 +680,10 @@ class Map:
         full_source = GeoJSONDataSource(geojson=protests_json)
         point_source = GeoJSONDataSource(geojson=protests_json)
 
-<<<<<<< HEAD
-=======
+
         # Here, point_source, which contains just the selected points,
         # gets "attached" to the map and the hover div.
->>>>>>> scott-spa
+
         points(plot, div, point_source)
 
         search_button.js_on_event(events.ButtonClick, CustomJS(
