@@ -13,7 +13,7 @@ article.spa-protest-result, a.spa-protest-result > section {
 }
 
 article.spa-protest-result:hover, a.spa-protest-result > section:hover {
-  border:2px solid #edb19f;
+  border:2px solid  #e87958 ;
 }
 
 a.site-title, a.site-title:visited{
@@ -23,7 +23,11 @@ a.site-title, a.site-title:visited{
 }
 
 .menu-icon{
-  background-color:#fee6df;
+  background-color:#fcad94;
+
+}
+.site-nav{
+  border: none;
 
 }
 
@@ -158,7 +162,7 @@ footer {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  background-color: #edb19f
+  background-color:  #e87958 
 }
 
 footer > article {
@@ -204,7 +208,7 @@ footer > article {
 }
 
 .site-header{
-  background-color:#edb19f;
+  background-color:#e87958 ;
 }
 
 .spa-category-button{
@@ -212,7 +216,7 @@ footer > article {
 }
 
 .spa-category-button:hover{
-  border:2px solid #edb19f !important;
+  border:2px solid #e87958  !important;
 }
 
 .heatmap-static{
@@ -247,7 +251,8 @@ footer > article {
 
 @media screen and (max-width: 1200px) {
   .site-nav{
-    background-color:#fee6df;
+    background-color:#fcad94;
+
   }
 
 }
@@ -262,7 +267,7 @@ footer > article {
     text-align:center;
     font-size:1.3em;
     color: darkred;
-    border: 1px solid #edb19f;
+    border: 1px solid  #e87958 ;
     background-color: #fee6df;
     margin:5px;
     font-weight: bold;
