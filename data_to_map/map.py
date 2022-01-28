@@ -393,7 +393,7 @@ if (properties != undefined) {
     tap = TapTool(
         renderers=[render],
         callback=OpenURL(
-            url='/spa/@perma'
+            url='/@perma'
         )
     )
     plot.add_tools(tap)
@@ -447,9 +447,9 @@ def points(plot, div, point_source):
                 // `baseurlPrefix` will need to match whatever
                 // baseurl Jekyll's _config.yml file specifies...
                 // pretty awkward, but I see no obvious alternative.
-                var baseurlPrefix = '/spa/'
+                //var baseurlPrefix = '/'
 
-                var protestName = baseurlPrefix + features['perma'][protest];
+                var protestName = "/" + features['perma'][protest];
 
                 // In the following I tried to make the underlying HTML
                 // structure a little more visible. It's not perfect,
@@ -715,13 +715,15 @@ class Map:
                     // `baseurlPrefix` will need to match whatever
                     // baseurl Jekyll's _config.yml file specifies...
                     // pretty awkward, but I see no obvious alternative.
-                    var baseurlPrefix = '/spa/'
+                    //zoop
+                    //var baseurlPrefix = '/';
 
-                    var protestName = baseurlPrefix + features['perma'][i];
+                    var protestName = "/" + features['perma'][i];
 
                     // In the following I tried to make the underlying HTML
                     // structure a little more visible. It's not perfect,
                     // but I hope it helps a bit.
+                    //doop da doo
 
                     div.text +=
     '<a href="' + protestName + '">' +

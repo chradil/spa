@@ -21,7 +21,7 @@ permalink: /about/
 
 <p>Our efforts to document, understand, and amplify school protest in Africa  has required multiple phases of data collection and analysis. As an ongoing project, the SPA research team makes no claim that our data is complete or includes all incidents of school protest throughout the continent of Africa. In fact, we know that this dataset is incomplete and invite <a href="{{site.baseurl}}/contribute">contributions of school protests through the linked form.</a></p>
 
-<p>We have attempted to collect the most accurate and complete information about protests events, and share sources for our claims whenever possible. However, the SPA team is not responsible for any factual errors in the reporting of protests or events. Questions or feedback about the site content, project data, or our analysis are welcome, and should be directed to the research team at <a href="mailto:{{ site.email }}">{{ site.email }}</a>. Click <a>here for further terms of usage for the project site and data.</a></p>
+<p>We have attempted to collect the most accurate and complete information about protests events, and share sources for our claims whenever possible. However, the SPA team is not responsible for any factual errors in the reporting of protests or events. Questions or feedback about the site content, project data, or our analysis are welcome, and should be directed to the research team at <a href="mailto:{{ site.email }}">{{ site.email }}</a>. Click <a href="https://docs.google.com/document/d/1br_LVVFwVBp8CWCI7xARp76XR2gumggRnKcdqm9vHfs/edit?usp=sharing" target="_blank">here for further terms of usage for the project site and data. </a></p>
 
 <p>Please use the following format to cite this project, which includes the contents of this website, interactive map, any research derived from the dataset, or any ideas derived from the School Protests in Africa Project: </p>
 
@@ -72,6 +72,7 @@ permalink: /about/
 <p><b>Cassandra Hradil</b>, Web Designer and Digital Humanities Specialist</p>
 <p><b>Joel Lee</b>, Web Developer</p>
 </div>
+<div style="max-width:40em; text-align:center; margin:auto"><h3 style="padding:20px; background-color:#edb19f; border:1px dashed black">The SPA Team mourns the recent passing of our colleague and collaborator Scott Enderle (1979-2021). Scott’s vision and leadership were central to the development of the SPA platform. We join our colleagues in celebrating his life.</h3></div>
 	</div>
 
 
